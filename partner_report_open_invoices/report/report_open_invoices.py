@@ -47,12 +47,14 @@ class report_open_invoices_parser(report_sxw.rml_parse):
         self.context = context
 
     def _lines_get(self, partner):
-        invoice_obj = self.pool['account.invoice']
-        invoices_rec = invoice_obj.search(self.cr, self.uid, [('partner_id', '=', partner.id), (
-            'account_id', '=', partner.property_account_receivable.id), ('state', '=', 'open')])
+        inv_obj = self.pool['account.invoice']
+        dom = [('partner_id', '=', partner.id),
+                ('account_id', '=', partner.property_account_receivable.id),
+                ('state', '=', 'open')]
+        inv_rec = inv_obj.search(self.cr, self.uid, dom)
         move_lines = []
-        for invoices in invoices_rec:
-            for invoice_data in invoice_obj.browse(self.cr, self.uid, invoices):
+        for invoice in inv_rec:
+            for invoice_data in inv_obj.browse(self.cr, self.uid, invoice):
                 for move_line_data in invoice_data.move_id.line_id:
                     if move_line_data.date_maturity:
                         move_lines.append(move_line_data)
