@@ -49,8 +49,8 @@ class report_open_invoices_parser(report_sxw.rml_parse):
     def _lines_get(self, partner):
         inv_obj = self.pool['account.invoice']
         dom = [('partner_id', '=', partner.id),
-                ('account_id', '=', partner.property_account_receivable.id),
-                ('state', '=', 'open')]
+               ('account_id', '=', partner.property_account_receivable.id),
+               ('state', '=', 'open')]
         inv_rec = inv_obj.search(self.cr, self.uid, dom)
         move_lines = []
         for invoice in inv_rec:

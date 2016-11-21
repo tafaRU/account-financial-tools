@@ -26,8 +26,8 @@
     "version": "8.0.1.0.0",
     "category": "Accounting",
     "description": """This module allows to print the report of
-                     open invoices details of partner in 
-                     partner form view.""",
+			open invoices details of partner in
+			partner form view.""",
     'website': 'http://www.serpentcs.com',
     "author": """Serpent Consulting Services Pvt. Ltd.,
                 Agile Business Group,
